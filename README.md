@@ -46,3 +46,12 @@ thème.
 Testé avec les données réelles de la collection *T-shirt, Sweats, Pulls &
 Gilets Bébé* (mix de produits en stock et sur commande, 15 produits, une
 seule page).
+
+**Correctif (2026-09-08)** : la première version utilisait le filtre
+`where_exp`, qui n'existe pas dans le Liquid de Shopify (c'est une extension
+Jekyll absente du moteur Liquid restreint de Shopify) — ce qui provoquait une
+erreur de rendu et faisait disparaître toute la grille produits (aucun
+produit affiché, y compris le message "collection vide"). Remplacé par
+`collection.products | where: 'available', false`, qui est le filtre
+`where` standard documenté par Shopify (comparaison par valeur), déjà utilisé
+pour le groupe `available: true`.

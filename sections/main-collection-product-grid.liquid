@@ -150,7 +150,7 @@
               Shopify : la pagination, les facettes et le sélecteur "Trier par" restent inchangés.
             {%- endcomment -%}
             {%- assign available_products = collection.products | where: 'available' -%}
-            {%- assign unavailable_products = collection.products | where_exp: 'product', 'product.available == false' -%}
+            {%- assign unavailable_products = collection.products | where: 'available', false -%}
             {%- assign sorted_products = available_products | concat: unavailable_products -%}
             <ul
               id="product-grid"
