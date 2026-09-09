@@ -1,0 +1,208 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "intro_banner": {
+          "type": "intro_banner",
+          "settings": {
+            "color_scheme": "scheme-2",
+            "show_author": false
+          }
+        },
+        "content": {
+          "type": "content",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Partager"
+          }
+        },
+        "toc": {
+          "type": "toc",
+          "settings": {
+            "heading": "Dans cet article"
+          }
+        },
+        "sidebar_products": {
+          "type": "sidebar_products",
+          "settings": {
+            "heading": "Nouveautés",
+            "collection": "nouveautes"
+          }
+        },
+        "sidebar_atelier": {
+          "type": "sidebar_atelier",
+          "settings": {
+            "heading": "L'atelier",
+            "text": "<p>Je suis Léa, la créatrice derrière chaque vêtement. Chaque pièce est coupée, assemblée et cousue à la main dans mon atelier en France, à partir de matières douces et naturelles pour la peau des tout-petits.</p>",
+            "link": "/pages/a-propos-atelier",
+            "link_label": "En savoir plus"
+          }
+        },
+        "sidebar_newsletter": {
+          "type": "sidebar_newsletter",
+          "settings": {
+            "heading": "Ne manquez aucune nouveauté",
+            "text": "<p>Inscrivez-vous pour recevoir les nouvelles créations et les conseils de l'atelier.</p>"
+          }
+        },
+        "sidebar_reassurance": {
+          "type": "sidebar_reassurance",
+          "settings": {
+            "layout": "vertical",
+            "icon_1": "truck",
+            "heading_1": "Expédition sous 24 à 48h pour les pièces disponibles",
+            "icon_2": "return",
+            "heading_2": "14 jours pour changer d'avis : échange ou remboursement",
+            "icon_3": "heart",
+            "heading_3": "Chaque pièce est confectionnée à la main, en petite série, en France"
+          }
+        }
+      },
+      "block_order": [
+        "intro_banner",
+        "content",
+        "share",
+        "toc",
+        "sidebar_products",
+        "sidebar_atelier",
+        "sidebar_newsletter",
+        "sidebar_reassurance"
+      ],
+      "custom_css": [
+        ".article-template__title {font-size: 25px; font-weight: 600;}",
+        ".page-width {max-width: var(--page-width); padding: 0px 20px;}"
+      ],
+      "settings": {}
+    },
+    "faq_collapsible": {
+      "type": "collapsible-content",
+      "name": "Questions fréquentes",
+      "blocks": {
+        "faq_delais": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Quels sont les délais de fabrication pour une pièce sur commande ?",
+            "icon": "stopwatch",
+            "row_content": "<p>Les pièces marquées « sur commande » sont fabriquées à la main dans mon atelier, à l'unité ou en toute petite série. Le délai de fabrication varie donc selon le nombre de commandes en cours : il vous est communiqué par email dès la validation de votre commande. Pour une date importante (naissance, cadeau, cérémonie), n'hésitez pas à me contacter avant d'acheter via la page <a href=\"/pages/contact\">Contact</a>.</p>"
+          }
+        },
+        "faq_tailles": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Comment choisir la bonne taille ?",
+            "icon": "ruler",
+            "row_content": "<p>Toutes mes créations sont réalisées en petites séries et peuvent tailler un peu différemment d'une pièce à l'autre. Pour être sûr(e) de choisir la bonne taille, consultez mon <a href=\"/pages/guide-des-tailles-bebe\">guide des tailles bébé</a> avant de commander.</p>"
+          }
+        },
+        "faq_retours": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Puis-je échanger ou retourner un article ?",
+            "icon": "return",
+            "row_content": "<p>Oui : vous disposez de 14 jours à compter de la réception de votre commande pour changer d'avis, échanger ou vous faire rembourser un article. Retrouvez toutes les conditions dans notre <a href=\"/policies/30637850904\">politique de remboursement</a>.</p>"
+          }
+        },
+        "faq_entretien": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Comment entretenir mes vêtements faits main ?",
+            "icon": "washing",
+            "row_content": "<p>Le velours côtelé, le sherpa et la gaze de coton demandent un peu plus de soin qu'un coton basique. Je détaille toute ma routine d'entretien, matière par matière, dans l'article <a href=\"/blogs/conseils-mode-bebe/comment-entretenir-le-velours-cotele-le-sherpa-et-la-gaze-de-coton\">Comment entretenir le velours côtelé, le sherpa et la gaze de coton</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_delais",
+        "faq_tailles",
+        "faq_retours",
+        "faq_entretien"
+      ],
+      "settings": {
+        "caption": "",
+        "heading": "Questions fréquentes",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-5",
+        "open_first_collapsible_row": false,
+        "image": "",
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 52,
+        "padding_bottom": 60
+      }
+    },
+    "featured_blog_kd3wUm": {
+      "type": "featured-blog",
+      "custom_css": [
+        ".full-unstyled-link {font-size: 18px; font-weight: 700;}",
+        ".article-card__excerpt {line-height: 1.6;}",
+        ".blog__button {margin-top: 0;}"
+      ],
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "conseils-mode-bebe",
+        "post_limit": 3,
+        "heading": "Vêtement bébé fille et garçon",
+        "heading_size": "h2",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_W6J3ic": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "nouveautes",
+        "products_to_show": 4,
+        "title": "Vêtements bébé fille et garçon",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": true,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq_collapsible",
+    "featured_blog_kd3wUm",
+    "featured_collection_W6J3ic"
+  ]
+}

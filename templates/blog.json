@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "custom_css": [
+        ".full-unstyled-link {font-size: 18px; font-weight: 700;}",
+        ".article-card__excerpt {line-height: 1.6}"
+      ],
+      "blocks": {
+        "category_filter_guide": {
+          "type": "category_filter",
+          "settings": {
+            "label": "Guide d'achat",
+            "tag": "guide"
+          }
+        },
+        "category_filter_entretien": {
+          "type": "category_filter",
+          "settings": {
+            "label": "Entretien & conseils",
+            "tag": "entretien"
+          }
+        },
+        "category_filter_cadeaux": {
+          "type": "category_filter",
+          "settings": {
+            "label": "Idées cadeaux",
+            "tag": "cadeaux"
+          }
+        },
+        "category_filter_artisanat": {
+          "type": "category_filter",
+          "settings": {
+            "label": "Artisanat",
+            "tag": "artisanat"
+          }
+        }
+      },
+      "block_order": [
+        "category_filter_guide",
+        "category_filter_entretien",
+        "category_filter_cadeaux",
+        "category_filter_artisanat"
+      ],
+      "settings": {
+        "layout": "grid",
+        "show_image": true,
+        "image_height": "large",
+        "show_date": true,
+        "show_author": true,
+        "show_category_filters": true,
+        "all_label": "Tout",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "custom_liquid_kzeGAW": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div style=\"background-color: #f9f9f9; padding: 40px 20px; margin-top: 50px; text-align: center; border-radius: 8px;\">\n  <h3 style=\"margin-bottom: 20px; font-family: var(--font-heading-family); font-size: 1.5rem;\">\n    L'Artisanat Français pour votre Bébé\n  </h3>\n  <p style=\"margin-bottom: 30px; max-width: 100%; margin-left: auto; margin-right: auto;\">\n    Vous avez aimé cet article ? Découvrez mes créations uniques, cousues main en Occitanie pour le confort des tout-petits.\n  </p>\n  \n  <div style=\"display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;\">\n    <a href=\"/collections/vetements-bebe-fille\" style=\"text-decoration: none; border: 1px solid #333; padding: 12px 25px; color: #333; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Collection Fille\n    </a>\n    \n    <a href=\"/collections/vetements-bebe-garcon\" style=\"text-decoration: none; border: 1px solid #333; padding: 12px 25px; color: #333; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Collection Garçon\n    </a>\n    \n    <a href=\"/collections/accessoires\" style=\"text-decoration: none; background-color: #333; color: #fff; padding: 12px 25px; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Idées Cadeaux\n    </a>\n  </div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_kzeGAW"
+  ]
+}

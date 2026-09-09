@@ -1,0 +1,283 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .blog-category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .blog-category-filters__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.8rem;
+    border-radius: 5rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.15);
+    background: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .blog-category-filters__pill:hover {
+    border-color: rgb(var(--color-button));
+  }
+
+  .blog-category-filters__pill--active {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    border-color: rgb(var(--color-button));
+  }
+
+  .blog-articles--grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (min-width: 750px) {
+    .blog-articles--grid-3 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .blog-articles--grid-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .article-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .article-card__tag {
+    font-size: 1.05rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+  }
+
+  .article-card__read-more {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+{%- endstyle -%}
+
+{%- paginate blog.articles by 9 -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+    <h1 class="title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ blog.title | escape }}
+    </h1>
+
+    {%- assign category_filter_blocks = section.blocks | where: 'type', 'category_filter' -%}
+    {%- if section.settings.show_category_filters and category_filter_blocks.size > 0 -%}
+      <ul class="blog-category-filters{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        <li>
+          <a
+            href="{{ blog.url }}"
+            class="blog-category-filters__pill{% if current_tags == empty %} blog-category-filters__pill--active{% endif %}"
+          >
+            {{ section.settings.all_label | default: 'Tout' | escape }}
+          </a>
+        </li>
+        {%- for block in category_filter_blocks -%}
+          {%- liquid
+            assign tag_handle = block.settings.tag | handle
+            assign is_active = false
+            if current_tags contains block.settings.tag
+              assign is_active = true
+            endif
+          -%}
+          <li {{ block.shopify_attributes }}>
+            <a
+              href="{{ blog.url }}/tagged/{{ tag_handle }}"
+              class="blog-category-filters__pill{% if is_active %} blog-category-filters__pill--active{% endif %}"
+            >
+              {{ block.settings.label | escape }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    <div class="blog-articles blog-articles--grid-3">
+      {%- for article in blog.articles -%}
+        <div
+          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          {%- render 'article-card',
+            article: article,
+            media_height: section.settings.image_height,
+            media_aspect_ratio: article.image.aspect_ratio,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
+            show_tags: true,
+            show_read_more: true,
+            show_excerpt: true
+          -%}
+        </div>
+      {%- else -%}
+        <p>{{ 'sections.collection_template.empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "grid",
+      "label": "t:sections.main-blog.settings.layout.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-blog.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.main-blog.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-blog.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-blog.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.main-blog.settings.image_height.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "header",
+      "content": "Filtres par catégorie"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category_filters",
+      "default": true,
+      "label": "Afficher les pastilles de filtre par catégorie"
+    },
+    {
+      "type": "text",
+      "id": "all_label",
+      "default": "Tout",
+      "label": "Libellé du filtre \"Tout\""
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_filter",
+      "name": "Filtre catégorie",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "default": "Guide d'achat",
+          "label": "Libellé affiché sur la pastille"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "default": "guide",
+          "label": "Tag d'article correspondant",
+          "info": "Doit correspondre exactement à un tag utilisé sur vos articles (ex: guide, entretien, cadeaux, artisanat)."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

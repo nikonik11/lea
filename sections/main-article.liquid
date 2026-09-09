@@ -1,0 +1,963 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .article-intro-banner {
+    background: rgb(var(--color-background));
+    padding: 4rem 0;
+    margin-bottom: 4rem;
+  }
+
+  .article-intro-banner__inner {
+    max-width: 78rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  .article-intro-banner__image {
+    margin: 0 auto 2.4rem;
+    max-width: 56rem;
+    border-radius: var(--media-radius, 0.4rem);
+    overflow: hidden;
+  }
+
+  .article-intro-banner__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .article-intro-banner__meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    opacity: 0.75;
+  }
+
+  .article-intro-banner__tagline {
+    margin: 1.2rem auto 0;
+    max-width: 56rem;
+  }
+
+  .article-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media screen and (min-width: 990px) {
+    .article-layout {
+      grid-template-columns: minmax(0, 1fr) 32rem;
+    }
+  }
+
+  .article-layout__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .article-layout__sidebar {
+      position: sticky;
+      top: 3rem;
+    }
+  }
+
+  .article-sidebar__block {
+    padding: 2.4rem;
+    border-radius: var(--text-boxes-radius, 0.4rem);
+    background: rgb(var(--color-background));
+    box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.08);
+  }
+
+  .article-sidebar__heading {
+    margin: 0 0 1.4rem;
+  }
+
+  .article-sidebar__toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .article-sidebar__toc-list a {
+    text-decoration: none;
+    color: rgb(var(--color-foreground));
+    opacity: 0.7;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+
+  .article-sidebar__toc-list a.is-active {
+    opacity: 1;
+    font-weight: 600;
+    color: rgb(var(--color-button));
+  }
+
+  .article-sidebar__product-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .article-sidebar__product-link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    color: rgb(var(--color-foreground));
+  }
+
+  .article-sidebar__product-image {
+    flex-shrink: 0;
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    background: rgba(var(--color-foreground), 0.04);
+  }
+
+  .article-sidebar__product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .article-sidebar__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    font-size: 1.4rem;
+  }
+
+  .article-sidebar__product-price {
+    opacity: 0.7;
+  }
+
+  .article-sidebar__atelier-image {
+    margin: -2.4rem -2.4rem 1.6rem;
+    border-radius: var(--text-boxes-radius, 0.4rem) var(--text-boxes-radius, 0.4rem) 0 0;
+    overflow: hidden;
+  }
+
+  .article-sidebar__atelier-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .article-sidebar__newsletter .newsletter-form__field-wrapper {
+    max-width: none;
+  }
+
+  .article-sidebar__reassurance .icon-with-text {
+    row-gap: 1.6rem;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign has_toc_block = false
+  for block in section.blocks
+    if block.type == 'toc'
+      assign has_toc_block = true
+    endif
+  endfor
+
+  assign toc_items = ''
+  assign processed_content = article.content
+  if has_toc_block and article.content contains '<h2>'
+    assign content_parts = article.content | split: '<h2>'
+    assign h2_index = 0
+    capture processed_content
+      for part in content_parts
+        if forloop.first
+          echo part
+        else
+          assign h2_index = h2_index | plus: 1
+          assign split_on_close = part | split: '</h2>'
+          assign heading_html = split_on_close[0]
+          assign heading_text = heading_html | strip_html | strip
+          assign rest_of_part = part | remove_first: heading_html | remove_first: '</h2>'
+          echo '<h2 id="article-section-'
+          echo h2_index
+          echo '">'
+          echo heading_html
+          echo '</h2>'
+          echo rest_of_part
+          capture toc_entry
+            echo '<li><a href="#article-section-'
+            echo h2_index
+            echo '" data-toc-link>'
+            echo heading_text
+            echo '</a></li>'
+          endcapture
+          assign toc_items = toc_items | append: toc_entry
+        endif
+      endfor
+    endcapture
+  endif
+
+  assign word_count = article.content | strip_html | split: ' ' | size
+  assign reading_time = word_count | plus: 199 | divided_by: 200
+  if reading_time < 1
+    assign reading_time = 1
+  endif
+-%}
+
+<article class="article-template">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'intro_banner' -%}
+        <div
+          class="article-intro-banner color-{{ block.settings.color_scheme }} gradient{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="article-intro-banner__inner">
+            {%- if article.image -%}
+              <div class="article-intro-banner__image media">
+                <img
+                  src="{{ article.image | image_url: width: 1100 }}"
+                  srcset="{{ article.image | image_url: width: 550 }} 550w, {{ article.image | image_url: width: 1100 }} 1100w"
+                  sizes="(min-width: 750px) 56rem, 100vw"
+                  alt="{{ article.image.alt | escape }}"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                  loading="eager"
+                  fetchpriority="high"
+                >
+              </div>
+            {%- endif -%}
+            <h1 class="article-template__title">{{ article.title | escape }}</h1>
+            <div class="article-intro-banner__meta caption-with-letter-spacing">
+              <span>{{ article.published_at | time_tag: format: 'date' }}</span>
+              <span aria-hidden="true">&middot;</span>
+              <span>{{ reading_time }} min de lecture</span>
+              {%- if block.settings.show_author -%}
+                <span aria-hidden="true">&middot;</span>
+                <span>{{ article.author }}</span>
+              {%- endif -%}
+            </div>
+            {%- if article.excerpt != blank -%}
+              <p class="article-intro-banner__tagline">{{ article.excerpt | strip_html }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+
+      {%- when '@app' -%}
+        <div class="page-width page-width--narrow">
+          {% render block %}
+        </div>
+      {%- when 'featured_image' -%}
+        {%- if article.image -%}
+          <div
+            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div
+              class="article-template__hero-{{ block.settings.image_height }} media"
+              {% if block.settings.image_height == 'adapt' and article.image %}
+                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+              {% endif %}
+            >
+              <img
+                srcset="
+                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                  {{ article.image | image_url }} {{ article.image.width }}w
+                "
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="{{ article.image | image_url: width: 1100 }}"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                alt="{{ article.image.alt | escape }}"
+              >
+            </div>
+          </div>
+        {%- endif -%}
+
+      {%- when 'title' -%}
+        <header
+          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <h1
+            class="article-template__title"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date -%}
+            <span class="circle-divider caption-with-letter-spacing">
+              {{- article.published_at | time_tag: format: 'date' -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span class="caption-with-letter-spacing">
+              <span>{{ article.author }}</span>
+            </span>
+          {%- endif -%}
+        </header>
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <div class="article-layout page-width page-width--narrow">
+    <div class="article-layout__main">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'content' -%}
+            <div
+              class="article-template__content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {{ processed_content }}
+            </div>
+
+          {%- when 'share' -%}
+            <div
+              class="article-template__social-sharing{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+            >
+              {% assign share_url = request.origin | append: article.url %}
+              {% render 'share-button', block: block, share_link: share_url %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+
+      <div class="article-template__back element-margin-top{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
+          <span class="icon-wrap">
+            <span class="svg-wrapper">
+              {{- 'icon-arrow.svg' | inline_asset_content -}}
+            </span>
+          </span>
+          {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
+        </a>
+      </div>
+    </div>
+
+    <aside class="article-layout__sidebar">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'toc' -%}
+            {%- if toc_items != blank -%}
+              <div class="article-sidebar__block article-sidebar__toc" data-article-toc {{ block.shopify_attributes }}>
+                <h2 class="article-sidebar__heading h5">{{ block.settings.heading | default: 'Dans cet article' }}</h2>
+                <ul class="article-sidebar__toc-list">
+                  {{ toc_items }}
+                </ul>
+              </div>
+            {%- endif -%}
+
+          {%- when 'sidebar_products' -%}
+            {%- assign sidebar_collection = collections[block.settings.collection] -%}
+            {%- if sidebar_collection != blank and sidebar_collection.products.size > 0 -%}
+              <div class="article-sidebar__block article-sidebar__products" {{ block.shopify_attributes }}>
+                <h2 class="article-sidebar__heading h5">{{ block.settings.heading }}</h2>
+                <ul class="article-sidebar__product-list list-unstyled">
+                  {%- for product in sidebar_collection.products limit: 3 -%}
+                    <li class="article-sidebar__product">
+                      <a href="{{ product.url }}" class="article-sidebar__product-link">
+                        <span class="article-sidebar__product-image">
+                          {%- if product.featured_media -%}
+                            <img
+                              src="{{ product.featured_media | image_url: width: 160 }}"
+                              alt="{{ product.featured_media.alt | escape }}"
+                              width="80"
+                              height="80"
+                              loading="lazy"
+                            >
+                          {%- endif -%}
+                        </span>
+                        <span class="article-sidebar__product-info">
+                          <span class="article-sidebar__product-title">{{ product.title | escape }}</span>
+                          <span class="article-sidebar__product-price">{{ product.price | money }}</span>
+                        </span>
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+
+          {%- when 'sidebar_atelier' -%}
+            <div class="article-sidebar__block article-sidebar__atelier" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                <div class="article-sidebar__atelier-image media">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 400 }}"
+                    srcset="{{ block.settings.image | image_url: width: 300 }} 300w, {{ block.settings.image | image_url: width: 400 }} 400w"
+                    sizes="30rem"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                  >
+                </div>
+              {%- endif -%}
+              <h2 class="article-sidebar__heading h5">{{ block.settings.heading }}</h2>
+              <div class="article-sidebar__atelier-text rte">{{ block.settings.text }}</div>
+              <a href="{{ block.settings.link }}" class="link animate-arrow">
+                {{ block.settings.link_label }}
+                <span class="icon-wrap">
+                  <span class="svg-wrapper">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </span>
+                </span>
+              </a>
+            </div>
+
+          {%- when 'sidebar_newsletter' -%}
+            <div class="article-sidebar__block article-sidebar__newsletter" {{ block.shopify_attributes }}>
+              <h2 class="article-sidebar__heading h5">{{ block.settings.heading }}</h2>
+              {%- if block.settings.text != blank -%}
+                <div class="rte">{{ block.settings.text }}</div>
+              {%- endif -%}
+              {% form 'customer', class: 'newsletter-form' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="ArticleSidebarNewsletter-{{ section.id }}-{{ block.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="ArticleSidebarNewsletter-{{ section.id }}-{{ block.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                  {%- if form.posted_successfully? -%}
+                    <h3 class="newsletter-form__message newsletter-form__message--success form__message" tabindex="-1" autofocus>
+                      <span class="svg-wrapper">
+                        {{- 'icon-success.svg' | inline_asset_content -}}
+                      </span>
+                      {{- 'newsletter.success' | t }}
+                    </h3>
+                  {%- endif -%}
+                </div>
+              {% endform %}
+            </div>
+
+          {%- when 'sidebar_reassurance' -%}
+            <div class="article-sidebar__block article-sidebar__reassurance" {{ block.shopify_attributes }}>
+              {% render 'icon-with-text', block: block %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </aside>
+  </div>
+
+  {%- if blog.comments_enabled? -%}
+    <div class="article-template__comment-wrapper background-secondary">
+      <div
+        id="comments"
+        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      >
+        {%- if article.comments_count > 0 -%}
+          {%- assign anchorId = '#Comments-' | append: article.id -%}
+
+          <h2 id="Comments-{{ article.id }}" tabindex="-1">
+            {{ 'blogs.article.comments' | t: count: article.comments_count }}
+          </h2>
+          {% paginate article.comments by 5 %}
+            <div class="article-template__comments">
+              {%- if comment.status == 'pending' and comment.content -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                  </footer>
+                </article>
+              {%- endif -%}
+
+              {%- for comment in article.comments -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
+                    ><span class="caption-with-letter-spacing">
+                      {{- comment.created_at | time_tag: format: 'date' -}}
+                    </span>
+                  </footer>
+                </article>
+              {%- endfor -%}
+              {% render 'pagination', paginate: paginate, anchor: anchorId %}
+            </div>
+          {% endpaginate %}
+        {%- endif -%}
+        {% form 'new_comment', article %}
+          {%- liquid
+            assign post_message = 'blogs.article.success'
+            if blog.moderated? and comment.status == 'unapproved'
+              assign post_message = 'blogs.article.success_moderated'
+            endif
+          -%}
+          <h2>{{ 'blogs.article.comment_form_title' | t }}</h2>
+          {%- if form.errors -%}
+            <div class="form__message" role="alert">
+              <h3 class="form-status caption-large text-body" tabindex="-1" autofocus>
+                <span class="svg-wrapper">
+                  {{- 'icon-error.svg' | inline_asset_content -}}
+                </span>
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h3>
+            </div>
+            <ul class="form-status-list caption-large">
+              {%- for field in form.errors -%}
+                <li>
+                  <a href="#CommentForm-{{ field }}" class="link">
+                    {%- if form.errors.translated_fields[field] contains 'author' -%}
+                      {{ 'blogs.article.name' | t }}
+                    {%- elsif form.errors.translated_fields[field] contains 'body' -%}
+                      {{ 'blogs.article.message' | t }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] }}
+                    {%- endif -%}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- elsif form.posted_successfully? -%}
+            <div class="form-status-list form__message" role="status">
+              <h3 class="form-status" tabindex="-1" autofocus>
+                <span class="svg-wrapper">
+                  {{- 'icon-success.svg' | inline_asset_content -}}
+                </span>
+                {{ post_message | t }}
+              </h3>
+            </div>
+          {%- endif -%}
+
+          <div
+            {% if blog.moderated? == false %}
+              class="article-template__comments-fields"
+            {% endif %}
+          >
+            <div class="article-template__comment-fields">
+              <div class="field field--with-error">
+                <input
+                  type="text"
+                  name="comment[author]"
+                  id="CommentForm-author"
+                  class="field__input"
+                  autocomplete="name"
+                  value="{{ form.author }}"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'author' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-author-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.name' | t }}"
+                >
+                <label class="field__label" for="CommentForm-author">
+                  {{- 'blogs.article.name' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'author' -%}
+                  <small id="CommentForm-author-error">
+                    <span class="form__message">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- 'blogs.article.name' | t }}
+                      {{ form.errors.messages.author }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+              <div class="field field--with-error">
+                <input
+                  type="email"
+                  name="comment[email]"
+                  id="CommentForm-email"
+                  autocomplete="email"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.email' | t }}"
+                >
+                <label class="field__label" for="CommentForm-email">
+                  {{- 'blogs.article.email' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'email' -%}
+                  <small id="CommentForm-email-error">
+                    <span class="form__message">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- 'blogs.article.email' | t }}
+                      {{ form.errors.messages.email }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="field field--with-error">
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentForm-body"
+                class="text-area field__input"
+                aria-required="true"
+                required
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentForm-body-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+              <label class="form__label field__label" for="CommentForm-body">
+                {{- 'blogs.article.message' | t }}
+                <span aria-hidden="true">*</span></label
+              >
+            </div>
+            {%- if form.errors contains 'body' -%}
+              <small id="CommentForm-body-error">
+                <span class="form__message">
+                  <span class="svg-wrapper">
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+                  </span>
+                  {{- 'blogs.article.message' | t }}
+                  {{ form.errors.messages.body }}.</span
+                >
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if blog.moderated? -%}
+            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+          {%- endif -%}
+          <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
+        {% endform %}
+      </div>
+    </div>
+  {%- endif -%}
+</article>
+
+{%- if has_toc_block and toc_items != blank -%}
+  <script src="{{ 'article-toc.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "intro_banner",
+      "name": "Bandeau d'intro",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Couleurs de fond",
+          "default": "scheme-2"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_author",
+          "default": false,
+          "label": "Afficher l'auteur"
+        }
+      ]
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "t:sections.main-article.blocks.share.settings.text.default"
+        }
+      ]
+    },
+    {
+      "type": "toc",
+      "name": "Sommaire",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Dans cet article",
+          "label": "Titre du sommaire"
+        }
+      ]
+    },
+    {
+      "type": "sidebar_products",
+      "name": "Nouveautés (sidebar)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Nouveautés",
+          "label": "Titre du bloc"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection à afficher",
+          "info": "3 produits maximum affichés."
+        }
+      ]
+    },
+    {
+      "type": "sidebar_atelier",
+      "name": "L'atelier (sidebar)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo de l'atelier / de Léa"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "L'atelier",
+          "label": "Titre du bloc"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Je suis Léa, la créatrice derrière chaque vêtement. Chaque pièce est coupée, assemblée et cousue à la main dans mon atelier en France, à partir de matières douces et naturelles pour la peau des tout-petits.</p>",
+          "label": "Texte de présentation"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien \"En savoir plus\""
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "default": "En savoir plus",
+          "label": "Libellé du lien"
+        }
+      ]
+    },
+    {
+      "type": "sidebar_newsletter",
+      "name": "Newsletter (sidebar)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Ne manquez aucune nouveauté",
+          "label": "Titre du bloc"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Inscrivez-vous pour recevoir les nouvelles créations et les conseils de l'atelier.</p>",
+          "label": "Texte"
+        }
+      ]
+    },
+    {
+      "type": "sidebar_reassurance",
+      "name": "Réassurance (sidebar)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "t:sections.multicolumn.blocks.column.settings.icon_1.label",
+          "options": [
+            { "value": "vertical", "label": "Vertical" },
+            { "value": "horizontal", "label": "Horizontal" }
+          ],
+          "default": "vertical"
+        },
+        {
+          "type": "select",
+          "id": "icon_1",
+          "default": "truck",
+          "label": "Icône 1",
+          "options": [
+            { "value": "truck", "label": "Livraison" },
+            { "value": "return", "label": "Retour" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "shirt", "label": "Vêtement" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1 (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "heading_1",
+          "default": "Expédition sous 24 à 48h pour les pièces disponibles",
+          "label": "Texte 1"
+        },
+        {
+          "type": "select",
+          "id": "icon_2",
+          "default": "return",
+          "label": "Icône 2",
+          "options": [
+            { "value": "truck", "label": "Livraison" },
+            { "value": "return", "label": "Retour" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "shirt", "label": "Vêtement" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2 (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "heading_2",
+          "default": "14 jours pour changer d'avis : échange ou remboursement",
+          "label": "Texte 2"
+        },
+        {
+          "type": "select",
+          "id": "icon_3",
+          "default": "heart",
+          "label": "Icône 3",
+          "options": [
+            { "value": "truck", "label": "Livraison" },
+            { "value": "return", "label": "Retour" },
+            { "value": "heart", "label": "Cœur" },
+            { "value": "leaf", "label": "Feuille" },
+            { "value": "shirt", "label": "Vêtement" },
+            { "value": "none", "label": "Aucune" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3 (remplace l'icône)"
+        },
+        {
+          "type": "text",
+          "id": "heading_3",
+          "default": "Chaque pièce est confectionnée à la main, en petite série, en France",
+          "label": "Texte 3"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
