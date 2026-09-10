@@ -1,0 +1,152 @@
+{% comment %}
+  SNIPPET: sticky-atc.liquid
+  Version : 2.2 (Masqué pour les produits sur commande + masqué quand le panier est ouvert)
+{% endcomment %}
+
+{% unless product.tags contains 'sur-commande-auto' %}
+
+<style>
+  #sticky-atc-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #e5e5e5;
+    padding: 20px 20px;
+    z-index: 2147483647; /* Z-index maximum pour passer au-dessus de tout */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(110%); /* Caché en bas */
+    transition: transform 0.3s ease-out;
+    gap: 15px;
+    visibility: hidden; /* Caché pour éviter les flashs */
+  }
+
+  /* Visible uniquement quand la classe .is-visible est ajoutée */
+  #sticky-atc-bar.is-visible {
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  /* Panier (ou tout autre tiroir/modale) ouvert : masquage total, prioritaire sur
+     la logique de scroll ci-dessus (display: none, pas juste une opacité/visibility
+     à 0, pour ne laisser aucune zone cliquable par-dessus le panier). */
+  #sticky-atc-bar.cart-is-open {
+    display: none !important;
+  }
+
+  /* Infos produit */
+  .sticky-atc-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000; /* Force le noir */
+    flex: 1;
+    max-width: 50%;
+  }
+  .sticky-atc-price {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-top: 3px;
+  }
+
+  /* Le Bouton */
+  .sticky-atc-btn {
+    background-color: #a9746c; /* Noir par défaut, change si besoin */
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    flex: 1;
+    max-width: 50%;
+  }
+
+  /* Masquer sur ordinateur (Largeur > 768px) */
+  @media screen and (min-width: 768px) {
+    #sticky-atc-bar { display: none !important; }
+  }
+</style>
+
+{% if product %}
+  <div id="sticky-atc-bar">
+    <div class="sticky-atc-info">
+      <span>{{ product.title | truncate: 20 }}</span>
+      <span class="sticky-atc-price">{{ product.price | money }}</span>
+    </div>
+    <button class="sticky-atc-btn" onclick="triggerAddToCart()">
+      Ajouter au panier
+    </button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const stickyBar = document.getElementById('sticky-atc-bar');
+
+      // --- PARTIE DÉTECTIVE ---
+      // On cherche le bouton par tous les moyens possibles
+      // 1. Par nom, 2. Par classe commune, 3. Par type submit dans un form panier
+      let mainButton = document.querySelector('button[name="add"]');
+      if (!mainButton) mainButton = document.querySelector('.product-form__submit');
+      if (!mainButton) mainButton = document.querySelector('.add-to-cart');
+      if (!mainButton) mainButton = document.querySelector('form[action*="/cart/add"] [type="submit"]');
+
+      // Si vraiment on ne trouve rien, on arrête (et on log l'erreur pour toi)
+      if (!mainButton) {
+        console.warn("Sticky ATC : Impossible de trouver le bouton principal d'ajout au panier.");
+        return;
+      }
+
+      // --- PARTIE ACTION ---
+
+      // Fonction qui clique sur le "Vrai" bouton quand on clique sur le "Faux"
+      window.triggerAddToCart = function() {
+        mainButton.click();
+      };
+
+      // Détection du scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Si le bouton principal n'est PLUS visible (on a scrollé plus bas)
+          if (!entry.isIntersecting) {
+            stickyBar.classList.add('is-visible');
+          } else {
+            stickyBar.classList.remove('is-visible');
+          }
+        });
+      }, { threshold: 0, rootMargin: "0px" }); // Réglages standard
+
+      observer.observe(mainButton);
+
+      // --- PARTIE PANIER ---
+      // Le thème ajoute la classe "overflow-hidden" sur <body> dès qu'un tiroir
+      // (panier, menu, recherche...) s'ouvre, et la retire à la fermeture — c'est
+      // le signal générique déjà utilisé par cart-drawer.js. On l'observe pour
+      // masquer complètement la barre sticky pendant que le panier est ouvert,
+      // indépendamment de la position de scroll et quel que soit le bouton qui a
+      // ouvert le panier (icône du header ou bouton de cette barre elle-même).
+      function syncStickyBarWithCartState() {
+        const cartIsOpen = document.body.classList.contains('overflow-hidden');
+        stickyBar.classList.toggle('cart-is-open', cartIsOpen);
+      }
+
+      const bodyClassObserver = new MutationObserver(syncStickyBarWithCartState);
+      bodyClassObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+      // État initial (au cas où la page se chargerait déjà avec le panier ouvert).
+      syncStickyBarWithCartState();
+    });
+  </script>
+{% endif %}
+
+{% endunless %}
