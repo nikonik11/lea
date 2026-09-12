@@ -82,8 +82,7 @@
         "sidebar_reassurance"
       ],
       "custom_css": [
-        ".article-template__title {font-size: 25px; font-weight: 600;}",
-        ".page-width {max-width: var(--page-width); padding: 0px 20px;}"
+        ".article-template__title {font-size: 25px; font-weight: 600;}"
       ],
       "settings": {}
     },

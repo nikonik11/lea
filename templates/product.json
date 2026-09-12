@@ -1,0 +1,256 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "text_HafrJM": {
+          "type": "text",
+          "settings": {
+            "text": "LÉA MOULIN COUTURE",
+            "text_style": "subtitle"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "popup_wmEDjR": {
+          "type": "popup",
+          "settings": {
+            "text": "Guide des tailles",
+            "page": "guide-des-tailles-bebe"
+          }
+        },
+        "text_WfJgt8": {
+          "type": "text",
+          "settings": {
+            "text": "Stock limité",
+            "text_style": "uppercase"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        },
+        "complementary_gL3tHm": {
+          "type": "complementary",
+          "settings": {
+            "block_heading": "Complétez sa tenue",
+            "make_collapsible_row": true,
+            "icon": "shirt",
+            "product_list_limit": 3,
+            "products_per_page": 2,
+            "pagination_style": "counter",
+            "image_ratio": "square",
+            "enable_quick_add": false
+          }
+        },
+        "icon_with_text_ghJLGe": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "heart",
+            "heading_1": "Fait main à Gruissan",
+            "icon_2": "leaf",
+            "heading_2": "Respect de la peau",
+            "icon_3": "truck",
+            "heading_3": "Expédition en 24h"
+          }
+        },
+        "description_mJkRbq": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_FGUN8E": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Composition",
+            "icon": "leaf",
+            "content": "<p>{{ product.metafields.custom.composition | metafield_tag }}</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_ATYn4P": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Entretien",
+            "icon": "washing",
+            "content": "<p>{{ product.metafields.custom.entretien | metafield_tag }}</p>",
+            "page": ""
+          }
+        },
+        "collapsible_tab_38dqW9": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Petite Série & Sur-mesure",
+            "icon": "star",
+            "content": "<p>Ce modèle est une <strong>création artisanale</strong>, réalisée en <strong>très petite série</strong> pour garantir son exclusivité.</p><p><strong>Votre taille est indisponible ?</strong><br/>Ne restez pas sur une déception ! Il est souvent possible de lancer une <strong>fabrication à la demande</strong>.<br/><strong>Contactez-moi</strong> via le formulaire : si le tissu est encore en stock à l'atelier, je serai ravie de coudre ce <strong>vêtement fait main</strong> spécialement pour votre bébé.</p>",
+            "page": ""
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Partager"
+          }
+        }
+      },
+      "block_order": [
+        "text_HafrJM",
+        "title",
+        "price",
+        "variant_picker",
+        "popup_wmEDjR",
+        "text_WfJgt8",
+        "buy_buttons",
+        "complementary_gL3tHm",
+        "icon_with_text_ghJLGe",
+        "description_mJkRbq",
+        "collapsible_tab_FGUN8E",
+        "collapsible_tab_ATYn4P",
+        "collapsible_tab_38dqW9",
+        "share"
+      ],
+      "custom_css": [
+        ".product__title > * {font-size: 20px; font-weight: 700;}",
+        ".product__description {font-size: 16px; line-height: 1.6;}",
+        ".share-button__button {min-height: 0;}",
+        ".product-popup-modal__button {min-height: 0;}",
+        ".product-popup-modal__opener {margin: 0px;}",
+        ".product-popup-modal__button {font-size: 14px;}",
+        ".icon-with-text .svg-wrapper {height: 22px;}",
+        ".product__description h2 {font-size: 18px; font-weight: 700;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "collapsible_content_eaLppN": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_YWXGTx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Idéal pour un cadeau de naissance",
+            "icon": "box",
+            "row_content": "<p>Vous souhaitez offrir cet ensemble pour fêter une arrivée ? C’est une excellente idée de <strong>cadeau de naissance</strong> utile et durable.<br/><br/>Ils vous suffit de me l'indiquer</p><p>Nous préparons chaque commande avec amour :</p><ul><li>Les vêtements sont enveloppés dans du papier de soie.</li><li><strong>Aucune facture</strong> n'est incluse dans le colis (tout se passe par email).</li><li>Vous pouvez ajouter un <strong>mot personnalisé</strong> au moment du panier, nous le glisserons dans le paquet.</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PeNDtY": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Délais de confection",
+            "icon": "ruler",
+            "row_content": "<p>Je confectionne chaque pièce avec passion directement dans <strong>mon atelier en France</strong>.</p><ul><li><strong>Articles en stock :</strong> Ils sont prêts à partir ! Je les prépare pour l'expédition sous 24h.</li><li><strong>Articles sur commande :</strong> Il me faut un petit délai (environ <strong>5 à 7 jours ouvrés</strong>) pour couper et assembler le vêtement spécialement pour votre bébé.</li></ul><p>C'est le temps nécessaire pour une qualité artisanale et des finitions parfaites.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_9VYWtG": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Expédition & Retours",
+            "icon": "truck",
+            "row_content": "<p><strong>L'Expédition :</strong><br/>Je prépare votre colis sous 24h. Vous recevrez un numéro de suivi (Colissimo ou Mondial Relay) pour savoir exactement quand il arrive chez vous.</p><p><strong>Les Retours :</strong><br/>Une hésitation sur la taille ? Pas de stress. Vous disposez de <strong>14 jours</strong> après réception pour me renvoyer l'article (non porté). Je procède à l'<strong>échange</strong> ou au <strong>remboursement</strong> dès que je le reçois. Commandez l'esprit tranquille !<br/>(sauf articles personnalisés)</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_TRpiKK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Questions fréquentes",
+            "icon": "chat_bubble",
+            "row_content": "<p><strong>Comment choisir la bonne taille ?</strong><br/>Mes coupes sont pensées pour le confort de bébé. Je taille de manière standard (\"ni trop grand, ni trop petit\").<br/><em>Mon conseil :</em> Si votre enfant est entre deux tailles ou porte des couches lavables, prenez la taille au-dessus pour qu'il en profite plus longtemps.</p><p><strong>Comment entretenir ce vêtement pour qu'il dure ?</strong><br/>Pour préserver la douceur du tissu (et la planète), je recommande un lavage en machine à 30°C sur cycle délicat. Évitez le sèche-linge qui pourrait faire rétrécir les fibres naturelles.</p><p><strong>Les matières conviennent-elles aux peaux sensibles ?</strong><br/>Absolument. Je sélectionne mes tissus (certifiés Oeko-Tex) avec une attention extrême. Ils sont garantis sans substances nocives et tout doux pour la peau fragile des nouveau-nés.</p><p><strong>Puis-je l'ajouter à une liste de naissance ?</strong><br/>Bien sûr ! C'est un grand classique des trousseaux de naissance. Les parents adorent recevoir des pièces artisanales et durables plutôt que de la \"Fast Fashion\".</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_YWXGTx",
+        "collapsible_row_PeNDtY",
+        "collapsible_row_9VYWtG",
+        "collapsible_row_TRpiKK"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Vous aimerez aussi",
+        "heading_size": "h2",
+        "products_to_show": 3,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "1766908374be0f86c5": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "collapsible_content_eaLppN",
+    "related-products",
+    "1766908374be0f86c5"
+  ]
+}

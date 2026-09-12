@@ -279,7 +279,7 @@
         </div>
 
       {%- when '@app' -%}
-        <div class="page-width page-width--narrow">
+        <div class="page-width">
           {% render block %}
         </div>
       {%- when 'featured_image' -%}
@@ -318,7 +318,7 @@
 
       {%- when 'title' -%}
         <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          class="page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           {{ block.shopify_attributes }}
         >
           <h1
@@ -340,7 +340,7 @@
     {%- endcase -%}
   {%- endfor -%}
 
-  <div class="article-layout page-width page-width--narrow">
+  <div class="article-layout page-width">
     <div class="article-layout__main">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -508,7 +508,7 @@
     <div class="article-template__comment-wrapper background-secondary">
       <div
         id="comments"
-        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       >
         {%- if article.comments_count > 0 -%}
           {%- assign anchorId = '#Comments-' | append: article.id -%}
