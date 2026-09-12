@@ -440,40 +440,29 @@ h6,
   }
 }
 
-/* Alignement des titres : centrés sur mobile pour un rendu homogène,
-   alignement existant conservé sur desktop (rien n'est modifié ici en
-   dehors de ce media query). Exclusion des titres qui jouent un rôle
-   d'étiquette de mise en page (logo, cartes produit, accordéons, totaux
-   panier, contrôles de tri, sidebar blog, messages de formulaire) plutôt
-   que de titre de page/section, pour ne pas casser leur alignement avec
-   les éléments voisins. */
+/* Alignement des titres sur mobile : liste blanche volontaire plutôt que
+   "tous les h1-h6 sauf exceptions". Cibler tous les niveaux de titre sans
+   distinction centrait aussi des titres qui ne sont pas des titres de
+   page/section (nom de produit sur sa fiche, titres de cartes produit,
+   étiquettes de composants comme la sidebar blog ou les questions de FAQ
+   en accordéon), ce qui cassait leur alignement avec les éléments voisins.
+   Seuls les grands titres de page/section listés ci-dessous sont donc
+   centrés sur mobile ; tout le reste garde son alignement par défaut
+   (généralement à gauche), desktop non concerné par cette règle. */
 @media screen and (max-width: 749px) {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .h0,
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6 {
+  .collection-hero__title,
+  .article-template__title,
+  .main-page-title,
+  .title--primary,
+  .cart__empty-text,
+  .title,
+  .collection-list-title,
+  .collage-wrapper-title,
+  .collapsible-content__heading,
+  .related-products__heading,
+  .rich-text__heading,
+  .image-with-text__heading {
     text-align: center;
-  }
-
-  .header__heading-link .h2,
-  .card__heading,
-  .accordion__title,
-  .totals__total,
-  .facet-filters__label,
-  .product-count__text,
-  .article-sidebar__heading,
-  .form-status,
-  .newsletter-form__message {
-    text-align: left;
   }
 }
 
