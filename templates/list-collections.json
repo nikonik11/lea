@@ -10,8 +10,13 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "main-list-collections",
       "settings": {
+        "title": "Les Collections Vêtements Bébé Fait Main",
+        "sort": "alphabetical",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "columns_mobile": "2",
         "padding_top": 80,
         "padding_bottom": 80
       }

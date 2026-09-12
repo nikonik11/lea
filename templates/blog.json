@@ -59,8 +59,8 @@
         "show_author": true,
         "show_category_filters": true,
         "all_label": "Tout",
-        "padding_top": 24,
-        "padding_bottom": 24
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "custom_liquid_kzeGAW": {

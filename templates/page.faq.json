@@ -15,8 +15,8 @@
         ".main-page-title {font-size: 40px;}"
       ],
       "settings": {
-        "padding_top": 24,
-        "padding_bottom": 28
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "collapsible_content_8HgKqr": {
@@ -127,8 +127,8 @@
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     }
   },

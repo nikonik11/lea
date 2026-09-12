@@ -1,0 +1,560 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_kNBMKw": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_eL74tf": {
+          "type": "heading",
+          "settings": {
+            "heading": "Vêtements Bébé Fait Main : Mode Fille & Garçon",
+            "heading_size": "h1"
+          }
+        },
+        "text_Y4JJFt": {
+          "type": "text",
+          "settings": {
+            "text": "Découvrez des créations uniques pour <strong>bébé (0-36 mois)</strong>, confectionnées à la main en <strong>France</strong>. Des matières douces et naturelles pour le confort de votre enfant et des <strong>cadeaux de naissance</strong> inoubliables.",
+            "text_style": "body"
+          }
+        },
+        "buttons_WhxGEn": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Collection Bébé Fille",
+            "button_link_1": "shopify://collections/vetements-bebe-fille",
+            "button_style_secondary_1": false,
+            "button_label_2": "Collection Bébé Garçon",
+            "button_link_2": "shopify://collections/vetements-bebe-garcon",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading_eL74tf",
+        "text_Y4JJFt",
+        "buttons_WhxGEn"
+      ],
+      "custom_css": [
+        ".banner--mobile-bottom .banner__box {background-color: #ffffffe6;}",
+        "h1,.h1 {font-weight: 700 !important; font-size: 28px;}"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/vetement-bebe-fait-main-france-lea-moulin-couture.webp",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "collection_list_N4b6U8": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_tkneEc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "nouveautes"
+          }
+        },
+        "featured_collection_KiMyRY": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hauts"
+          }
+        },
+        "featured_collection_WE7Wnx": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bas"
+          }
+        },
+        "featured_collection_N8Q9iq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "robes-combinaisons"
+          }
+        },
+        "featured_collection_4CmNi8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ensembles"
+          }
+        },
+        "featured_collection_hke6ej": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "accessoires"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_tkneEc",
+        "featured_collection_KiMyRY",
+        "featured_collection_WE7Wnx",
+        "featured_collection_N8Q9iq",
+        "featured_collection_4CmNi8",
+        "featured_collection_hke6ej"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Collections bébé fait main",
+        "heading_size": "h2",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection_FearNc": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "nouveautes",
+        "products_to_show": 4,
+        "title": "Les Nouveautés de l'Atelier",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "collection_list_N7ME7h": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_TXHYVQ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "vetements-bebe-fille"
+          }
+        },
+        "featured_collection_mJWD48": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "vetements-bebe-garcon"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_TXHYVQ",
+        "featured_collection_mJWD48"
+      ],
+      "custom_css": [
+        ".full-unstyled-link {font-size: 12px;}"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "title": "Vêtement pour bébé fille et bébé garçon",
+        "heading_size": "h2",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "collage_xxtUJJ": {
+      "type": "collage",
+      "blocks": {
+        "image_bKtaLz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ensemble-gilet-pantalon-bebe-fait-main-france.webp"
+          }
+        },
+        "product_tNm7M4": {
+          "type": "product",
+          "settings": {
+            "product": "hauts-gilet-berger-marcel-sherpa-ecru",
+            "second_image": false
+          }
+        },
+        "product_KE7Efi": {
+          "type": "product",
+          "settings": {
+            "product": "pantalon-bebe-velours-extensible",
+            "second_image": false
+          }
+        }
+      },
+      "block_order": [
+        "image_bKtaLz",
+        "product_tNm7M4",
+        "product_KE7Efi"
+      ],
+      "disabled": true,
+      "name": "t:sections.collage.presets.name",
+      "settings": {
+        "heading": "Créez votre ensemble sur-mesure",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "card_styles": "product-card-wrapper",
+        "color_scheme": "scheme-1",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection_9XPrTA": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "vetements-bebe-fille",
+        "products_to_show": 4,
+        "title": "Vêtement bébé fille",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection_ELCApN": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "vetements-bebe-garcon",
+        "products_to_show": 4,
+        "title": "Vêtement bébé garçon",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "multicolumn_Qddnqh": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_KMT7UB": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Douceur_et_tissus_naturel_hypoallergenique.png",
+            "title": "Douceur & Naturel",
+            "text": "<p>Parce que la peau des bébés est 5 fois plus fine que la nôtre, je sélectionne des matières naturelles (gaze de coton, laine, lin). Tous nos tissus sont garantis sans substance nocive pour respecter l'épiderme fragile des tout-petits.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RVXpYC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Confection_100_Fait_Main_en_France.png",
+            "title": "Confection 100% Fait Main en France",
+            "text": "<p>Chaque vêtement est coupé et cousu intégralement dans mon atelier en France. Loin de la production industrielle, je prends le temps de soigner chaque finition pour créer des pièces uniques et durables, pensées pour être transmises au sein de la fratrie.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_3mifVC": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Coupes_Confort_Motricite_Libre.png",
+            "title": "Bien-être de l'enfant",
+            "text": "<p>Un bébé a besoin de bouger pour découvrir le monde. Mes créations (0 à 36 mois) privilégient des coupes amples et évolutives qui ne serrent pas le ventre. Elles favorisent la motricité libre et l'autonomie, tout en restant élégantes pour les grandes occasions.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_KMT7UB",
+        "column_RVXpYC",
+        "column_3mifVC"
+      ],
+      "custom_css": [
+        ".multicolumn-card__image-wrapper {width: 77px;}",
+        ".multicolumn-card__info {text-align: left; font-size: 16px; line-height: 1.4;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "L'Artisanat Français au service du bien-être de bébé",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "square",
+        "button_label": "Consulter notre F.A.Q",
+        "button_link": "shopify://pages/faq",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "image_with_text_3PWtQX": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_JQ6V94": {
+          "type": "heading",
+          "settings": {
+            "heading": "Une rupture de stock ? Écrivez-moi !",
+            "heading_size": "h2"
+          }
+        },
+        "text_j6pVmy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Chaque <strong>vêtement pour bébé</strong> est <strong>fait main</strong> dans mon <strong>atelier à Gruissan.</strong> Je privilégie la qualité à la quantité en produisant uniquement de <strong>très petites séries</strong>.</p><p><strong>Votre coup de cœur est en rupture de stock ?</strong><br/>Ne partez pas ! Je propose un service de <strong>confection sur demande</strong>. Contactez-moi directement : s'il me reste du tissu, je serai ravie de coudre votre modèle unique sur-mesure</p>",
+            "text_style": "body"
+          }
+        },
+        "button_7eFjiD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Me contacter",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_JQ6V94",
+        "text_j6pVmy",
+        "button_7eFjiD"
+      ],
+      "custom_css": [
+        "#ImageWithText--template--25353730949443__image_with_text_3PWtQX {padding: 34px 34px;}",
+        ".image-with-text p {font-size: 16px;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/trousseau-naissance-bebe-chic-artisanat-francais.webp",
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_collection_Kmx3xK": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "creations-bebe-sur-commande",
+        "products_to_show": 4,
+        "title": "Créations sur Commande",
+        "heading_size": "h2",
+        "description": "<p>Victimes de leur succès, ces créations artisanales ne sont plus disponibles en stock immédiat. Cependant, notre atelier propose de confectionner ces pièces <strong>sur-mesure pour votre bébé</strong>, sous réserve de disponibilité de nos tissus.</p>",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "custom_liquid_wYPdQN": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div style=\"background-color: #f9f9f9; padding: 40px 20px; margin-top: 50px; text-align: center; border-radius: 8px;\">\n  <h3 style=\"margin-bottom: 20px; font-family: var(--font-heading-family); font-size: 1.5rem;\">\n    L'Artisanat Français pour votre Bébé\n  </h3>\n  <p style=\"margin-bottom: 30px; max-width: 100%; margin-left: auto; margin-right: auto;\">\n    Vous avez aimé cet article ? Découvrez mes créations uniques, cousues main en Occitanie pour le confort des tout-petits.\n  </p>\n  \n  <div style=\"display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;\">\n    <a href=\"/collections/vetements-bebe-fille\" style=\"text-decoration: none; border: 1px solid #333; padding: 12px 25px; color: #333; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Collection Fille\n    </a>\n    \n    <a href=\"/collections/vetements-bebe-garcon\" style=\"text-decoration: none; border: 1px solid #333; padding: 12px 25px; color: #333; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Collection Garçon\n    </a>\n    \n    <a href=\"/collections/accessoires\" style=\"text-decoration: none; background-color: #333; color: #fff; padding: 12px 25px; font-weight: bold; border-radius: 4px; transition: all 0.3s;\">\n      Idées Cadeaux\n    </a>\n  </div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "rich_text_mUiL8J": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Y4x93h": {
+          "type": "heading",
+          "settings": {
+            "heading": "L'Excellence du Fait-Main pour vos Vêtements Bébé Fille & Garçon",
+            "heading_size": "h2"
+          }
+        },
+        "text_pMWK4c": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Créatrice de Mode Bébé Française (Livraison Nationale)</strong><br/>Bienvenue chez Léa Moulin Couture. Depuis mon atelier en Occitanie, je confectionne des tenues uniques qui voyagent <strong>dans toute la France</strong>. Que vous cherchiez un <strong>vêtement bébé fille</strong> bohème ou un ensemble <strong>vêtement bébé garçon</strong> chic, chaque pièce est réalisée à la commande ou en petite série, garantissant une exclusivité que vous ne trouverez pas en grande surface.</p><p><strong>Le Dressing Idéal : Du trousseau de naissance au 3 ans</strong><br/>Ma collection est pensée pour sublimer chaque étape.</p><ul><li><strong>Pour les filles :</strong> Craquez pour une robe qui tourne, une blouse en gaze de coton ou un beguin fleuri.</li><li><strong>Pour les garçons :</strong> Découvrez nos salopettes intemporelles, sarouels confortables et gilets de berger.</li><li><strong>Le Mixte :</strong> La plupart de mes créations sont conçues pour se transmettre entre frères et sœurs, une approche durable et économique de la mode enfantine.</li></ul><p><strong>Qualité Oeko-Tex et Confort Absolu</strong><br/>Au-delà du style, je privilégie le bien-être. Tous mes tissus sont certifiés <strong>Oeko-Tex Standard 100</strong>. C'est l'assurance d'un vêtement sain, doux et résistant. Offrir une création Léa Moulin, c'est offrir le savoir-faire français en <strong>cadeau de naissance</strong>, livré directement chez vous ou chez les heureux parents, partout en France.</p>"
+          }
+        },
+        "button_WN4xTr": {
+          "type": "button",
+          "settings": {
+            "button_label": "Découvrir",
+            "button_link": "shopify://pages/a-propos-atelier",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_Y4x93h",
+        "text_pMWK4c",
+        "button_WN4xTr"
+      ],
+      "custom_css": [
+        ".rich-text__blocks {max-width: 100%;}"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "featured_blog_Pjz9ww": {
+      "type": "featured-blog",
+      "custom_css": [
+        ".full-unstyled-link {font-size: 18px; font-weight: 700;}",
+        ".article-card__excerpt {line-height: 1.6;}",
+        ".blog__button {margin-top: 7px;}"
+      ],
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "blog": "conseils-mode-bebe",
+        "post_limit": 3,
+        "heading": "L'Expertise du Vêtement Bébé Fille & Garçon Fait Main",
+        "heading_size": "h2",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "scheme-5",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "17669122581e403e60": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_JTyFyz": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "left",
+            "instafeed_margin_top": 34,
+            "instafeed_margin_bottom": 34,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "#fcfbf9",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_JTyFyz"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "image_banner_kNBMKw",
+    "collection_list_N4b6U8",
+    "featured_collection_FearNc",
+    "collection_list_N7ME7h",
+    "collage_xxtUJJ",
+    "featured_collection_9XPrTA",
+    "featured_collection_ELCApN",
+    "multicolumn_Qddnqh",
+    "image_with_text_3PWtQX",
+    "featured_collection_Kmx3xK",
+    "custom_liquid_wYPdQN",
+    "rich_text_mUiL8J",
+    "featured_blog_Pjz9ww",
+    "17669122581e403e60"
+  ]
+}

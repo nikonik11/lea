@@ -1,0 +1,66 @@
+{%- if collection.metafields.custom.seo_content_html != blank -%}
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="seo-content-container">
+      {%- comment -%} 
+        On utilise .value pour récupérer le texte brut 
+        et la nouvelle clé custom.seo_content_html 
+      {%- endcomment -%}
+      {{ collection.metafields.custom.seo_content_html.value }}
+    </div>
+  </div>
+
+  <style>
+    .seo-content-container {
+      max-width: 100%;
+      margin: 0 auto;
+      color: rgba(var(--color-foreground), 0.75);
+      font-size: 16px;
+      line-height: 1.4;
+    }
+    /* Styles pour le contenu HTML brut */
+    .seo-content-container h2 {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-heading-family);
+      font-size: 2.2rem;
+      color: rgb(var(--color-foreground));
+    }
+    .seo-content-container ul {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+    }
+    .seo-content-container li {
+      margin-bottom: 0.5rem;
+    }
+    .seo-content-container strong {
+      color: rgb(var(--color-foreground));
+    }
+    .seo-content-container a {
+      text-decoration: underline;
+      color: rgb(var(--color-foreground));
+    }
+    .section-{{ section.id }}-padding {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "SEO Footer Content",
+  "settings": [],
+  "presets": [
+    {
+      "name": "SEO Footer Content"
+    }
+  ]
+}
+{% endschema %}
