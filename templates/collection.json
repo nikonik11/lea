@@ -12,7 +12,8 @@
     "banner": {
       "type": "main-collection-banner",
       "custom_css": [
-        ".collection-hero__description {max-width: 100%; font-size: 15px; line-height: 1.4;}"
+        ".collection-hero__description {max-width: 100%; font-size: 15px; line-height: 1.4; color: #000;}",
+        ".collection-hero {background-color: #fcfbf9; padding-top: 25px; padding-bottom: 25px;}"
       ],
       "settings": {
         "show_collection_description": true,
@@ -27,7 +28,7 @@
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
+        "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
@@ -37,11 +38,12 @@
         "filter_type": "horizontal",
         "enable_sorting": true,
         "padding_top": 80,
-        "padding_bottom": 80
+        "padding_bottom": 16
       }
     },
     "seo_collection_footer_MgKdPV": {
       "type": "seo-collection-footer",
+      "custom_css": [],
       "name": "SEO Footer Content",
       "settings": {}
     }

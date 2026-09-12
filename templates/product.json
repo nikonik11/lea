@@ -142,7 +142,8 @@
         ".product-popup-modal__opener {margin: 0px;}",
         ".product-popup-modal__button {font-size: 14px;}",
         ".icon-with-text .svg-wrapper {height: 22px;}",
-        ".product__description h2 {font-size: 18px; font-weight: 700;}"
+        ".product__description h2 {font-size: 18px; font-weight: 700;}",
+        ".product-media-container.media-type-image {--aspect-ratio: 1 !important;}"
       ],
       "settings": {
         "enable_sticky_info": true,
