@@ -1,0 +1,44 @@
+{% comment %}
+  SECTION : sticky-add-to-cart.liquid
+
+  Pourquoi une section (et pas un simple appel {% render 'sticky-atc' %}
+  glissé dans sections/main-product.liquid) :
+
+  La barre sticky "Ajouter au panier" existait avant la mise à jour Dawn
+  v16.0.0 via le snippet personnalisé snippets/sticky-atc.liquid, inclus
+  par un appel {% render %} codé en dur dans sections/main-product.liquid
+  (un fichier coeur du thème). La mise à jour a réinitialisé
+  main-product.liquid au stock Dawn v16, ce qui a silencieusement supprimé
+  cet appel — le snippet lui-même a survécu (les fichiers personnalisés
+  hors coeur Dawn ne sont pas touchés), mais plus rien ne le rendait, donc
+  la barre a disparu du site sans qu'aucun réglage n'ait été désactivé.
+
+  Pour éviter que ça se reproduise à la prochaine mise à jour du thème :
+  cette section est déclarée comme une section de page normale, incluse
+  depuis templates/product.json plutôt que codée en dur dans un fichier
+  .liquid coeur. Les fichiers de configuration JSON du thème
+  (templates/*.json, config/settings_data.json) sont préservés par
+  l'outil de mise à jour Shopify - contrairement au code Liquid/CSS/JS
+  des fichiers stock, qui est réinitialisé. Une future mise à jour pourra
+  donc réinitialiser sections/main-product.liquid sans effacer cette
+  barre : son inclusion vit dans le template JSON, pas dans le fichier
+  coeur.
+
+  Toute la logique (affichage au scroll, masquage à l'ouverture du panier,
+  détection du bouton "Ajouter au panier" réel) reste dans
+  snippets/sticky-atc.liquid, inchangé, pour ne pas dupliquer/risquer de
+  casser un comportement déjà validé.
+{% endcomment %}
+{%- render 'sticky-atc' -%}
+
+{% schema %}
+{
+  "name": "Barre ATC sticky",
+  "tag": "section",
+  "class": "section--sticky-add-to-cart",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": []
+}
+{% endschema %}

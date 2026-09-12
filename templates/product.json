@@ -245,12 +245,17 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "sticky_add_to_cart": {
+      "type": "sticky-add-to-cart",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "collapsible_content_eaLppN",
     "related-products",
-    "1766908374be0f86c5"
+    "1766908374be0f86c5",
+    "sticky_add_to_cart"
   ]
 }
